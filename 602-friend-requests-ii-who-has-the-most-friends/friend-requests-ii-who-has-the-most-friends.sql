@@ -1,20 +1,9 @@
-# Write your MySQL query statement below
-with Table1(lft,rgt) as (
-select requester_id,accepter_id
-FROM RequestAccepted
-UNION
-select accepter_id,requester_id
-FROM RequestAccepted
-),
-
- table2 as(
-   select lft,rgt , count(*) as cnt
-    FROM Table1 
-    GROUP by lft
-    ORDER BY cnt DESC
- )
- select lft as id ,cnt as num
- FROM table2
- LIMIT 1;
-    
-
+SELECT id, COUNT(*) AS num
+FROM (
+    SELECT requester_id AS id FROM RequestAccepted
+    UNION ALL
+    SELECT accepter_id AS id FROM RequestAccepted
+) AS all_friends
+GROUP BY id
+ORDER BY num DESC
+LIMIT 1;
