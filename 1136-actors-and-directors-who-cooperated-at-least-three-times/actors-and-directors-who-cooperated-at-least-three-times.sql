@@ -3,4 +3,4 @@ SELECT actor_id,
     director_id
 FROM ActorDirector
 GROUP by actor_id,director_id
-HAVING count(*) >= 3;
+HAVING count(timestamp) >= 3;
