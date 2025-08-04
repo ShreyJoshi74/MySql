@@ -3,8 +3,6 @@ WITH Table1(buyer_id,join_date,in_date) AS (select A.buyer_id AS buyer_id,
      C.join_date AS join_date,
      A.order_date AS in_date
 FROM Orders A
-LEFT JOIN Items B
-    On A.item_id = B.item_id
 LEFT JOIN Users C
     On A.buyer_id = C.user_id),
 Table2(buyer_id,join_id,cnt) AS 
