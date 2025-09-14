@@ -1,7 +1,13 @@
 # Write your MySQL query statement below
-SELECT(select num
+With Table1 AS(select 
+    num,
+    count(*) as cnt
 FROM MyNumbers
-GROUP by num
-HAVING count(*) = 1
-ORDER BY num DESC
-LIMIT 1) AS num;
+GROUP BY num
+HAVING cnt = 1
+ORDER BY num DESC)
+SELECT 
+    MAX(num) AS num
+
+FROM Table1
+;
